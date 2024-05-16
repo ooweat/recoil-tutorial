@@ -19,13 +19,17 @@ function Todo(props) {
     toggleTodo(checked)
   }
 
+  const handleDestroy = () => {
+    setTodos(todos => todos.filter(todo => todo.id !== id))
+  }
+
   return (
       <li className={ done ? "completed" : ""}>
         <div className="view">
           <input className="toggle" type="checkbox" checked = {done}
           onChange={handleToggle}/>
           <label>{text}</label>
-          <button className="destroy" />
+          <button className="destroy" onClick={handleDestroy}/>
         </div>
         <input className="edit" value="Create a TodoMVC template" />
       </li>
