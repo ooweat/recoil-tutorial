@@ -19,12 +19,16 @@ function Todo(props) {
     toggleTodo(checked)
   }
 
+  const handleRowClick = () => {
+    toggleTodo(!done)
+  }
+
   const handleDestroy = () => {
     setTodos(todos => todos.filter(todo => todo.id !== id))
   }
 
   return (
-      <li className={ done ? "completed" : ""}>
+      <li className={ done ? "completed" : ""} onClick={handleRowClick}>
         <div className="view">
           <input className="toggle" type="checkbox" checked = {done}
           onChange={handleToggle}/>
