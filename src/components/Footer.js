@@ -1,4 +1,4 @@
-import {useRecoilState, useSetRecoilState} from "recoil";
+import {useRecoilValue, useRecoilState, useSetRecoilState} from "recoil";
 import * as state from '../state/todos'
 
 function Footer() {
@@ -13,9 +13,13 @@ function Footer() {
     setTodos(todos => todos.filter(todo => !todo.done))
     alert('완료된 할 일을 모두 삭제했습니다.')
   }
+
+  const todos = useRecoilValue(state.todos)
+  const completedCount = todos.filter(todo => !todo.done).length
+
   return (
       <footer className="footer">
-        <span className="todo-count"><strong>0</strong> 개 남음</span>
+        <span className="todo-count"><strong>{completedCount}</strong> 개 남음</span>
         <ul className="filters">
           <li>
             <a className={filterType === "all" ? "selected" : ""}
